@@ -1,7 +1,12 @@
 import React from'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PredictGames from './components/predictGames.jsx';
+//import PredictGames from './components/predictGames.jsx';
+import * as serviceWorker from './serviceWorker';
 
-//const element = <h1>Learning</h1>;
-ReactDOM.render(<PredictGames />, document.getElementById('root'));
+import App from './components/App';
+
+const element = <h1>Learning</h1>;
+ReactDOM.render(<App />, document.getElementById('root'));
+
+serviceWorker.unregister();
