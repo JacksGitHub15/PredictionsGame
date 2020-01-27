@@ -1,12 +1,16 @@
-import React from'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import PredictGames from './components/predictGames.jsx';
 import * as serviceWorker from './serviceWorker';
-
 import App from './components/App';
+import Firebase, { FirebaseContext } from './components/Firebase';
 
-const element = <h1>Learning</h1>;
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <FirebaseContext.Provider value={new Firebase()}>
+    <App />
+    </FirebaseContext.Provider>,
+    document.getElementById('root'),
+);
 
 serviceWorker.unregister();
