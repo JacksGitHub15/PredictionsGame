@@ -39,6 +39,4 @@ class Firebase {
     this.auth.currentUser.updatePassword(password);
 }
 
-firebase.analytics();
-
 export default Firebase;
