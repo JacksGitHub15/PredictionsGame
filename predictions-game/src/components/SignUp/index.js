@@ -25,7 +25,7 @@ class SignUpFormBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-  onSubmit = event => {
+  onSubmit = event => {// eslint-disable-next-line
     const { username, email, passwordOne } = this.state;
 
     this.props.firebase
