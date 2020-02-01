@@ -5,10 +5,11 @@ import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import Button from 'react-bootstrap/Button';
 
 const SignInPage = () => (
   <div>
-    <h1>SignIn</h1>
+    <h1>Sign In</h1>
     <SignInForm />
     <PasswordForgetLink />
     <SignUpLink />
@@ -68,9 +69,9 @@ class SignInFormBase extends Component {
           placeholder="Password"
         />
 
-        <button disabled={isInvalid} type="submit">
+        <Button class="btn btn-primary btn-block" disabled={isInvalid} type="submit">
           Sign In
-        </button>
+        </Button>
         {error && <p>{error.message}</p>}
       </form>
     );

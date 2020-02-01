@@ -1,5 +1,6 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 
 // Your web app's Firebase configuration
 const config = {
@@ -19,6 +20,7 @@ class Firebase {
     app.initializeApp(config);
     //Authentication API
     this.auth = app.auth();
+    this.db = app.database();
   }
 
   // *** Auth API Takes email and password parameters 
@@ -37,6 +39,12 @@ class Firebase {
 
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
+
+
+  // User API
+  // eslint-disable-next-line
+  user = uid =>this.db.ref('users/${uid}'); 
+  users = () => this.db.ref('users');
 }
 
 export default Firebase;
