@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
@@ -9,10 +8,9 @@ import Button from 'react-bootstrap/Button';
 
 const SignInPage = () => (
   <div>
-    <h1>Sign In</h1>
+    <h1 class="text-center">Sign In</h1>
     <SignInForm />
     <PasswordForgetLink />
-    <SignUpLink />
   </div>
 );
 
@@ -22,6 +20,7 @@ const INITIAL_STATE = {
   error: null,
 };
 
+
 class SignInFormBase extends Component {
   constructor(props) {
     super(props);
@@ -30,6 +29,7 @@ class SignInFormBase extends Component {
 
   onSubmit = event => {
     const { email, password } = this.state;
+    
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
@@ -51,7 +51,7 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form class="text-center" onSubmit={this.onSubmit}>
 
         <input
           name="email"

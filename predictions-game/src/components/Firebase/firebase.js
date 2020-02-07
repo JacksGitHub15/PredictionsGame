@@ -43,7 +43,7 @@ class Firebase {
 
   // User API
   // eslint-disable-next-line
-  user = uid =>this.db.ref('users/${uid}'); 
+  user = uid => this.db.ref(`users/${uid}`); 
   users = () => this.db.ref('users');
 }
 
