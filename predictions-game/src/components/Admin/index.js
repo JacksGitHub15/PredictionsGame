@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 //eslint-disable-next-line
 import { AuthUserContext, withAuthorization } from '../Session';
+//eslint-disable-next-line 
 import * as ROLES from '../../constants/roles';
 
 class AdminPage extends Component {
