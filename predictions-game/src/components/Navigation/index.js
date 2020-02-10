@@ -23,7 +23,7 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-  <header className="background-color: 'blue'">
+  <header bg="primary">
     <h1 className="h3 mb-3 font-weight-normal, text-center">Premier League Predictions Game</h1>
     <div className="text-left">
       <Link to={ROUTES.HOME}>Home</Link>

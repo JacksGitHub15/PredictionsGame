@@ -1,11 +1,10 @@
 import React from 'react';
 import { withAuthorization } from '../Session';
-import PredictGames from '../App/predictGames';
+import GamesTable from '../App/GamesTable';
 
 const HomePage = () => (
   <div>
-    <h1>Home Page</h1>
-    <PredictGames />
+    <GamesTable />
   </div>
 );
 
