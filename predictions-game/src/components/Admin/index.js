@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { compose } from 'recompose';
 //eslint-disable-next-line
 import { withFirebase } from '../Firebase';
 //eslint-disable-next-line
 import { AuthUserContext, withAuthorization } from '../Session';
-//eslint-disable-next-line 
 import * as ROLES from '../../constants/roles';
 
 class AdminPage extends Component {
@@ -67,8 +67,10 @@ const UserList = ({ users }) => (
   </ul>
 );
 
+const condition = authUser => 
+  authUser && !!authUser.roles[ROLES.ADMIN];
 
-const condition = authUser => !!authUser;
-
-
-export default withAuthorization(condition)(AdminPage);
+export default compose(
+  withAuthorization(condition),
+  withFirebase,
+)(AdminPage);

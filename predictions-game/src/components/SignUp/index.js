@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
 import Button from 'react-bootstrap/Button';
 
 const SignUpPage = () => (
@@ -17,6 +18,7 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  isAdmin: false,
   error: null,
 }
 
@@ -27,8 +29,11 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
-
+    const { username, email, passwordOne, isAdmin } = this.state;
+    const roles = {};
+    if (isAdmin) {
+      roles[ROLES.ADMIN] = ROLES.ADMIN;
+    }
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -38,6 +43,7 @@ class SignUpFormBase extends Component {
           .set({
             username,
             email,
+            roles,
           })
           .then(() => {
             this.setState({ ...INITIAL_STATE });
@@ -57,12 +63,17 @@ class SignUpFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  onChangeCheckbox = event => {
+    this.setState({ [event.target.name]: event.target.checked });
+  };
+
   render() {
     const {
       username,
       email,
       passwordOne,
       passwordTwo,
+      isAdmin,
       error,
     } = this.state;
 
@@ -106,6 +117,16 @@ class SignUpFormBase extends Component {
           placeholder="Confirm Password"
         />
 
+        <label>
+        Admin:
+        <input
+            name="isAdmin"
+            type="checkbox"
+            checked={isAdmin}
+            onChange={this.onChangeCheckbox}
+        />
+        </label>
+
         <Button class="btn btn-primary btn-block" disabled={isInvalid} type="submit">
           Sign Up
         </Button>
@@ -122,5 +143,5 @@ const SignUpForm = compose(
 )(SignUpFormBase);
 
 export { SignUpForm };
-
+export const ADMIN = 'ADMIN';
 export default SignUpPage;

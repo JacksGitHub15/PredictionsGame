@@ -1,34 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//eslint-disable-next-line
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
 import { AuthUserContext } from '../Session';
 import 'bootstrap/dist/css/bootstrap.min.css';
-//eslint-disable-next-line
-import Navbar from 'react-bootstrap/Navbar';
-//eslint-disable-next-line
-import Nav from 'react-bootstrap/Nav';
-//eslint-disable-next-line
-import NavDropdown from 'react-bootstrap/NavDropdown';
-
 
 const Navigation = () => (
-  <div>
-    <AuthUserContext.Consumer>
-      {authUser =>
-        authUser ? <NavigationAuth /> : <NavigationNonAuth />}
-    </AuthUserContext.Consumer>
-  </div>
+  <AuthUserContext.Consumer>
+    {authUser =>
+      authUser ? <NavigationAuth authUser={authUser} /> : <NavigationNonAuth />}
+  </AuthUserContext.Consumer>
 );
 
-const NavigationAuth = () => (
+const NavigationAuth = ({ authUser }) => (
   <header bg="primary">
     <h1 className="h3 mb-3 font-weight-normal, text-center">Premier League Predictions Game</h1>
     <div className="text-left">
       <Link to={ROUTES.HOME}>Home</Link>
       <Link to={ROUTES.ACCOUNT}>Account</Link>
-      <Link to={ROUTES.ADMIN}>Admin</Link>
+      {!!authUser.roles[ROLES.ADMIN] && (
+        <Link to={ROUTES.ADMIN}>Admin</Link>
+      )}
     </div>
     <SignOutButton />
   </header>
