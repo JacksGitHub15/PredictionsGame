@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
-//eslint-disable-next-line
 import { withFirebase } from '../Firebase';
 //eslint-disable-next-line
 import { AuthUserContext, withAuthorization } from '../Session';
